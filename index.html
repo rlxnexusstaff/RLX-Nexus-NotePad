@@ -41,13 +41,13 @@
     <main class="container main-container" style="padding-top: 50px;">
 
         <!-- Alert dinâmico -->
-        <div id="alertBox" class="alert d-none mb-3 shadow-sm" role="alert" aria-live="polite" aria-atomic="true">
+        <div id="alertBox" class="alert d-none mb-2 shadow-sm" role="alert" aria-live="polite" aria-atomic="true">
         </div>
 
         <!-- Hero -->
-        <section class="home-hero mb-3" aria-label="Introdução">
-            <h1 class="home-hero-title fs-4">NotePad Oficial da RLX Nexus</h1>
-            <p class="home-hero-tagline small text-muted">Suas notas seguras online, salvas e compartilhadas instantaneamente via link.</p>
+        <section class="home-hero" aria-label="Introdução">
+            <h1 class="home-hero-title">NotePad Oficial da RLX Nexus</h1>
+            <p class="home-hero-tagline">Suas notas seguras online, salvas e compartilhadas instantaneamente via link.</p>
         </section>
 
         <!-- Editor Compactado para Tela Fixa -->
@@ -65,39 +65,39 @@
                 <div class="mb-2 d-flex flex-wrap align-items-center justify-content-between gap-2 topLinks"
                     role="toolbar" aria-label="Ações da nota">
                     <div>
-                        <a href="#" id="btn-new-note" role="button" aria-label="Criar nova nota" class="small me-2">
+                        <a href="#" id="btn-new-note" role="button" aria-label="Criar nova nota" class="me-2">
                             <i class="bi bi-file-earmark-plus me-1" aria-hidden="true"></i>
                             <strong>Nova Nota</strong>
                         </a>
-                        <a href="#" id="btn-share" role="button" aria-label="Compartilhar link da nota" class="small me-2">
+                        <a href="#" id="btn-share" role="button" aria-label="Compartilhar link da nota" class="me-2">
                             <i class="bi bi-share me-1" aria-hidden="true"></i>
                             <strong>Compartilhar Link</strong>
                         </a>
-                        <a href="#" id="btn-download" role="button" aria-label="Baixar nota como arquivo de texto" class="small">
+                        <a href="#" id="btn-download" role="button" aria-label="Baixar nota como arquivo de texto">
                             <i class="bi bi-download me-1" aria-hidden="true"></i>
                             <strong>Baixar .txt</strong>
                         </a>
                     </div>
 
                     <div class="d-flex align-items-center gap-3">
-                        <span id="char-counter" class="autosave-status small">0 / 50.000 caracteres</span>
-                        <button type="button" id="btn-theme-toggle" class="btn btn-outline-secondary btn-sm" title="Alternar tema">
+                        <span id="char-counter" class="autosave-status">0 / 50.000 caracteres</span>
+                        <button type="button" id="btn-theme-toggle" class="btn btn-outline-secondary" title="Alternar tema">
                             <span id="theme-icon">🌙</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Textarea (linhas reduzidas para não exigir scroll) -->
+                <!-- Textarea (altura controlada via CSS) -->
                 <div class="mb-2">
                     <label for="edit_textarea" class="visually-hidden">Conteúdo da nota</label>
                     <textarea id="edit_textarea" class="form-control textarea shadow-none"
-                        placeholder="Escreva suas anotações aqui..." rows="10" aria-describedby="char-count"></textarea>
+                        placeholder="Escreva suas anotações aqui..." aria-describedby="char-count"></textarea>
                 </div>
 
                 <!-- Status autosave + Atalhos -->
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span id="autosave-status" class="autosave-status small" aria-live="polite"></span>
-                    <span class="shortcut-hint small text-muted">
+                    <span id="autosave-status" class="autosave-status" aria-live="polite"></span>
+                    <span class="shortcut-hint">
                         <kbd>Ctrl</kbd> + <kbd>S</kbd> para salvar &nbsp;|&nbsp;
                         <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd> nova nota
                     </span>
@@ -106,7 +106,7 @@
                 <!-- Botão Salvar -->
                 <div class="row align-items-center">
                     <div class="col-md-12 d-flex align-items-center gap-3">
-                        <button type="submit" class="btn btn-primary btn-sm shadow-sm" id="btn-save">
+                        <button type="submit" class="btn btn-primary shadow-sm" id="btn-save">
                             <i class="bi bi-save me-1" aria-hidden="true"></i> Salvar Nota
                         </button>
                     </div>
@@ -115,10 +115,10 @@
         </section>
     </main>
 
-    <!-- ========== MODAL DE CONFIRMAÇÃO PERSONALIZADO (COM CONTORNO AZUL) ========== -->
+    <!-- ========== MODAL DE CONFIRMAÇÃO PERSONALIZADO ========== -->
     <div class="modal fade" id="customConfirmModal" tabindex="-1" aria-labelledby="customConfirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border border-primary shadow-lg">
+            <div class="modal-content shadow-lg">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold" id="customConfirmModalLabel">Confirmação</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
@@ -127,8 +127,8 @@
                     Tem certeza de que deseja realizar esta ação?
                 </div>
                 <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-secondary px-4 btn-sm" data-bs-dismiss="modal" id="modalBtnCancel">Cancelar</button>
-                    <button type="button" class="btn btn-primary px-4 btn-sm" id="modalBtnConfirm">Confirmar</button>
+                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal" id="modalBtnCancel">Cancelar</button>
+                    <button type="button" class="btn btn-primary px-4" id="modalBtnConfirm">Confirmar</button>
                 </div>
             </div>
         </div>
