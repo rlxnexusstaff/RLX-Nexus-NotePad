@@ -394,11 +394,19 @@ kbd {
     box-shadow: 0 0 20px rgba(13, 110, 253, 0.25) !important; /* Brilho azul suave ao redor */
 }
 
-/* Ajusta o container principal para preencher exatamente a tela sem estourar */
+/* Trava a página inteira no tamanho exato da tela, eliminando qualquer scroll */
+html, body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Centraliza e limita o container principal dentro do viewport */
 .main-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente se houver espaço */
+    justify-content: center;
     padding-top: 0 !important;
 }
