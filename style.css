@@ -1,0 +1,404 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-body: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --navbar-bg: #0f172a;
+    --radius-sm: 10px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.03), 0 4px 6px -4px rgba(0,0,0,0.03);
+    --max-note-chars: 50000;
+}
+
+/* ============ RESET & BASE ============ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============ NAVBAR ============ */
+.navbar-custom {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #fff !important;
+    user-select: none;
+}
+
+.navbar-brand img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ============ LAYOUT ============ */
+.main-container {
+    max-width: 900px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+/* ============ HERO ============ */
+.home-hero {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.home-hero-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--navbar-bg);
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+}
+
+.home-hero-tagline {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* ============ EDITOR CARD ============ */
+.editor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: clamp(20px, 4vw, 32px);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ============ FORM ELEMENTS ============ */
+.form-control {
+    border-color: var(--border-color);
+    color: var(--text-main);
+    transition: all var(--transition-normal);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+}
+
+#edit_title {
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    font-weight: 600;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+}
+
+#edit_title:focus {
+    border-bottom-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.textarea {
+    font-family: 'Inter', monospace;
+    font-size: 0.95rem;
+    resize: vertical;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    background-color: #fcfcfd;
+    min-height: 200px;
+    line-height: 1.7;
+}
+
+/* ============ TOP LINKS BAR ============ */
+.topLinks {
+    background-color: #f1f5f9 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 12px 16px !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.topLinks a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.topLinks a:hover,
+.topLinks a:focus-visible {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* ============ BUTTONS ============ */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    padding: 10px 24px;
+    transition: all var(--transition-normal);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+    outline: 3px solid rgba(37,99,235,0.5);
+    outline-offset: 2px;
+}
+
+/* ============ ALERTS ============ */
+.alert {
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    border: none;
+}
+
+.alert-enter {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ STATUS INDICATOR ============ */
+.autosave-status {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: opacity var(--transition-fast);
+    min-height: 1.2em;
+}
+
+.autosave-status.saving {
+    color: #f59e0b;
+}
+
+.autosave-status.saved {
+    color: #10b981;
+}
+
+/* ============ CHAR COUNTER WARNING ============ */
+.char-warning {
+    color: #ef4444 !important;
+    font-weight: 600 !important;
+}
+
+/* ============ KEYBOARD SHORTCUT HINT ============ */
+.shortcut-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+kbd {
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    font-family: inherit;
+    color: var(--text-main);
+}
+
+/* ==========================================
+   DARK MODE PROFISSIONAL E UNIFICADO
+   ========================================== */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #121214;
+    --bs-body-color: #e1e1e6;
+    background-color: #121214 !important;
+    color: #e1e1e6 !important;
+}
+
+[data-bs-theme="dark"] body {
+    background-color: #121214 !important;
+    color: #e1e1e6 !important;
+}
+
+/* Título da Home no Modo Escuro */
+[data-bs-theme="dark"] .home-hero-title {
+    color: #f8fafc !important;
+}
+
+/* O Card Principal ganha fundo chumbo elegante */
+[data-bs-theme="dark"] .editor-card,
+[data-bs-theme="dark"] .card, 
+[data-bs-theme="dark"] .bg-white {
+    background-color: #1a1a1e !important;
+    color: #e1e1e6 !important;
+    border-color: #29292e !important;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5) !important;
+}
+
+/* Barra de Ações Rápidas (topLinks) dentro do Card */
+[data-bs-theme="dark"] .topLinks {
+    background-color: #202024 !important;
+    border-color: #29292e !important;
+}
+
+/* Campos de Input e Textarea */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .textarea {
+    background-color: #202024 !important;
+    color: #e1e1e6 !important;
+    border-color: #29292e !important;
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .textarea:focus {
+    background-color: #25252b !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.2);
+}
+
+/* Teclas de Atalho (kbd) no Dark Mode */
+[data-bs-theme="dark"] kbd {
+    background-color: #27272a;
+    color: #f4f4f5;
+    border: 1px solid #3f3f46;
+}
+
+/* Textos Secundários / Muted */
+[data-bs-theme="dark"] .text-muted,
+[data-bs-theme="dark"] .shortcut-hint {
+    color: #a1a1aa !important;
+}
+
+/* ============ PRINT ============ */
+@media print {
+    .navbar-custom,
+    .topLinks,
+    .btn-primary,
+    .shortcut-hint,
+    .autosave-status,
+    #alertBox { display: none !important; }
+
+    .editor-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+
+    .textarea {
+        border: none;
+        background: transparent;
+    }
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 576px) {
+    .topLinks a {
+        margin-right: 12px;
+        font-size: 0.82rem;
+    }
+
+    .main-container {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+}
+
+/* ==========================================
+   BOTÃO DE TEMA PERSONALIZADO (SEM BORDAS)
+   ========================================== */
+#btn-theme-toggle {
+    background-color: transparent !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 50% !important;
+    width: 38px;
+    height: 38px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    box-shadow: none !important;
+}
+
+/* Efeito ao passar o mouse */
+#btn-theme-toggle:hover {
+    background-color: rgba(37, 99, 235, 0.1) !important;
+    border-color: var(--primary-color) !important;
+    transform: scale(1.08);
+}
+
+#btn-theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Tamanho e suavidade do emoji/ícone */
+#theme-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+#btn-theme-toggle:hover #theme-icon {
+    transform: rotate(15deg);
+}
+
+/* Adaptação perfeita para o Dark Mode */
+[data-bs-theme="dark"] #btn-theme-toggle {
+    border-color: #29292e !important;
+    background-color: #202024 !important;
+}
+
+[data-bs-theme="dark"] #btn-theme-toggle:hover {
+    background-color: #2a2a30 !important;
+    border-color: #3f3f46 !important;
+}
+
+.char-warning {
+    color: #ef4444 !important;
+    font-weight: 600 !important;
+}
+
+#customConfirmModal .modal-content {
+    border: 2px solid #0d6efd !important; /* Ajuste a espessura para 1px ou 2px se preferir */
+    box-shadow: 0 0 20px rgba(13, 110, 253, 0.25) !important; /* Brilho azul suave ao redor */
+}
+
+/* Ajusta o container principal para preencher exatamente a tela sem estourar */
+.main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente se houver espaço */
+    padding-top: 0 !important;
+}
