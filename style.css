@@ -26,7 +26,7 @@
 
 html, body {
     height: 100vh;
-    overflow: hidden; /* Remove totalmente qualquer barra de rolagem */
+    overflow: hidden; /* Remove totalmente qualquer barra de rolagem da tela principal */
     margin: 0;
     padding: 0;
 }
@@ -130,14 +130,17 @@ body {
     box-shadow: none;
 }
 
+/* Estilo Discord para o Textarea (cresce e depois cria scroll interno) */
 .textarea {
     font-family: 'Inter', monospace;
     font-size: 0.92rem;
-    resize: none; /* Trava o redimensionamento manual para evitar estouro */
+    resize: none; 
     border-radius: var(--radius-md);
     padding: 12px 16px;
     background-color: #fcfcfd;
-    height: 160px; /* Altura controlada para caber em qualquer tela */
+    min-height: 80px;
+    max-height: 180px;  /* Altura máxima antes de ativar a barra de rolagem interna */
+    overflow-y: auto;   /* Scroll apenas dentro do textarea se passar do limite */
     line-height: 1.5;
 }
 
