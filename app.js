@@ -5,6 +5,12 @@ import { showAlert, updateCounters, setAutoSaveStatus, setUnsavedState, initThem
 
 'use strict';
 
+// ========== AUTO-RESIZE ESTILO DISCORD ==========
+function autoResizeTextarea() {
+    DOM.textarea.style.height = 'auto';
+    DOM.textarea.style.height = DOM.textarea.scrollHeight + 'px';
+}
+
 // ========== MODAL DE CONFIRMAÇÃO PERSONALIZADO ==========
 function showConfirmModal(title, message, confirmButtonText = 'Confirmar') {
     return new Promise((resolve) => {
@@ -111,6 +117,7 @@ async function newNote() {
 
     DOM.title.value = '';
     DOM.textarea.value = '';
+    autoResizeTextarea();
     updateCounters();
     setAutoSaveStatus('');
     setUnsavedState(false);
@@ -160,6 +167,7 @@ function downloadNote() {
 let autoSaveTimeout = null;
 
 function triggerAutoSave() {
+    autoResizeTextarea();
     updateCounters();
     clearTimeout(autoSaveTimeout);
 
@@ -202,6 +210,7 @@ function loadNoteFromHash() {
     if (noteData) {
         DOM.title.value = noteData.t;
         DOM.textarea.value = noteData.c;
+        autoResizeTextarea();
         updateCounters();
         
         // Bloqueia edição
@@ -262,6 +271,7 @@ function handleBeforeUnload(e) {
 // ========== EVENT LISTENERS ==========
 function init() {
     initTheme();
+    autoResizeTextarea();
 
     if (DOM.btnThemeToggle) {
         DOM.btnThemeToggle.addEventListener('click', (e) => {
