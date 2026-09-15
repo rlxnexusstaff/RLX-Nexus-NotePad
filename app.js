@@ -204,12 +204,12 @@ function loadNoteFromHash() {
         DOM.textarea.value = noteData.c;
         updateCounters();
         
-        // ===== BLOQUEIA A EDIÇÃO =====
+        // Bloqueia edição
         DOM.title.disabled = true;
         DOM.textarea.readOnly = true;
         DOM.textarea.classList.add('bg-light');
         
-        // ===== OCULTA TODOS OS BOTÕES DE AÇÃO (Salvar, Nova Nota, Download, Compartilhar) =====
+        // Oculta botões de ação e ferramentas
         if (DOM.btnSave) DOM.btnSave.style.display = 'none';
         if (DOM.btnNew) DOM.btnNew.style.display = 'none';
         if (DOM.btnDownload) DOM.btnDownload.style.display = 'none';
@@ -225,19 +225,16 @@ function loadNoteFromHash() {
 
 // ========== ATALHOS DE TECLADO ==========
 function handleKeyboardShortcuts(e) {
-    // Ctrl + S para salvar
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
         e.preventDefault();
         saveNoteToUrl();
     }
 
-    // Ctrl + Alt + N para nova nota (Evita conflito com Ctrl + Shift + N de aba anônima)
     if ((e.ctrlKey || e.metaKey) && e.altKey && e.key.toLowerCase() === 'n') {
         e.preventDefault();
         newNote();
     }
 
-    // Tab no Textarea
     if (e.key === 'Tab' && e.target === DOM.textarea) {
         e.preventDefault();
         const start = DOM.textarea.selectionStart;
@@ -278,7 +275,6 @@ function init() {
     DOM.textarea.addEventListener('input', triggerAutoSave);
     DOM.title.addEventListener('input', triggerAutoSave);
 
-    // Validação rígida do limite de caracteres
     DOM.textarea.addEventListener('input', () => {
         const maxChars = CONFIG.MAX_CHARS || 50000;
         if (DOM.textarea.value.length > maxChars) {
