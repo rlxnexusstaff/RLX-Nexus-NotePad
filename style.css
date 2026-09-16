@@ -134,27 +134,42 @@ body {
 
 /* ============ TOP LINKS BAR ============ */
 .topLinks {
-    background-color: #f1f5f9 !important;
-    border: 1px solid var(--border-color) !important;
-    border-radius: var(--radius-md) !important;
-    padding: 10px 14px !important;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 0 12px 0 !important;
 }
 
 .topLinks a {
-    color: var(--primary-color);
-    text-decoration: none;
-    margin-right: 16px;
-    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
     font-weight: 500;
-    transition: color var(--transition-fast);
-    white-space: nowrap;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    text-decoration: none !important;
 }
 
-.topLinks a:hover,
-.topLinks a:focus-visible {
-    color: var(--primary-hover);
-    text-decoration: underline;
+.topLinks a:hover {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
+}
+
+[data-bs-theme="dark"] .topLinks a {
+    background: #1e1e22;
+    border-color: #2e2e34;
+    color: #a1a1aa;
+}
+
+[data-bs-theme="dark"] .topLinks a:hover {
+    color: #fff;
+    background: #282830;
+    border-color: #3b82f6;
 }
 
 /* ============ BUTTONS ============ */
