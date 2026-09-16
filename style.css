@@ -130,16 +130,7 @@ body {
     box-shadow: none;
 }
 
-.textarea {
-    font-family: 'Inter', monospace;
-    font-size: 0.92rem;
-    resize: none; /* Trava o redimensionamento manual para evitar estouro */
-    border-radius: var(--radius-md);
-    padding: 12px 16px;
-    background-color: #fcfcfd;
-    height: 160px; /* Altura controlada para caber em qualquer tela */
-    line-height: 1.5;
-}
+.textarea
 
 /* ============ TOP LINKS BAR ============ */
 .topLinks {
