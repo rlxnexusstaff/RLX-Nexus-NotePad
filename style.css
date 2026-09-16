@@ -7,17 +7,17 @@
     --text-main: #1e293b;
     --text-muted: #64748b;
     --navbar-bg: #0f172a;
-    --radius-sm: 10px;
+    --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --transition-fast: 0.15s ease;
     --transition-normal: 0.2s ease;
     --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-    --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.03), 0 4px 6px -4px rgba(0,0,0,0.03);
+    --shadow-md: 0 12px 24px -4px rgba(0,0,0,0.06), 0 4px 8px -2px rgba(0,0,0,0.03);
     --max-note-chars: 50000;
 }
 
-/* ============ RESET & BASE (TRAVA O SCROLL GLOBAL) ============ */
+/* ============ RESET & BASE (TRAVA SCROLL GLOBAL) ============ */
 *,
 *::before,
 *::after {
@@ -26,13 +26,13 @@
 
 html, body {
     height: 100vh;
-    overflow: hidden; /* Remove totalmente qualquer barra de rolagem */
+    overflow: hidden; /* Mantém a tela 100% fixa */
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: var(--bg-body);
+    background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%), var(--bg-body);
     color: var(--text-main);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -40,10 +40,12 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ============ NAVBAR ============ */
+/* ============ NAVBAR (VIDRO FOSCO / GLASSMORPHISM) ============ */
 .navbar-custom {
-    background-color: var(--navbar-bg) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background-color: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: var(--shadow-sm);
 }
 
@@ -55,14 +57,14 @@ body {
 }
 
 .navbar-brand img {
-    height: 36px;
+    height: 34px;
     width: auto;
     object-fit: contain;
 }
 
-/* ============ LAYOUT (FIXO NA TELA) ============ */
+/* ============ LAYOUT (CENTRALIZADO E FIXO) ============ */
 .main-container {
-    max-width: 900px;
+    max-width: 920px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -83,12 +85,12 @@ body {
     font-weight: 700;
     color: var(--navbar-bg);
     letter-spacing: -0.025em;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .home-hero-tagline {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 400;
 }
 
@@ -130,9 +132,34 @@ body {
     box-shadow: none;
 }
 
-.textarea
+/* ============ TEXTAREA (EXPANDIDA E RESPONSIVA) ============ */
+.textarea {
+    font-family: 'Inter', monospace;
+    font-size: 0.95rem;
+    resize: none;
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    background-color: #fcfcfd;
+    height: clamp(240px, 42vh, 460px); /* Ocupa mais espaço sem forçar rolagem na página */
+    line-height: 1.6;
+    overflow-y: auto; /* Rolagem apenas aqui dentro */
+}
 
-/* ============ TOP LINKS BAR ============ */
+/* Scrollbar sutil para o editor */
+.textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}
+
+/* ============ TOP LINKS BAR (ESTILO BADGES/PILLS) ============ */
 .topLinks {
     background-color: transparent !important;
     border: none !important;
@@ -143,13 +170,13 @@ body {
     display: inline-flex;
     align-items: center;
     padding: 6px 12px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-size: 0.82rem;
     font-weight: 500;
     color: var(--text-muted);
     background: rgba(0, 0, 0, 0.03);
     border: 1px solid var(--border-color);
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     text-decoration: none !important;
 }
 
@@ -160,33 +187,21 @@ body {
     transform: translateY(-1px);
 }
 
-[data-bs-theme="dark"] .topLinks a {
-    background: #1e1e22;
-    border-color: #2e2e34;
-    color: #a1a1aa;
-}
-
-[data-bs-theme="dark"] .topLinks a:hover {
-    color: #fff;
-    background: #282830;
-    border-color: #3b82f6;
-}
-
 /* ============ BUTTONS ============ */
 .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
     border-radius: var(--radius-sm);
-    font-weight: 500;
-    padding: 8px 20px;
+    font-weight: 600;
+    padding: 9px 22px;
     transition: all var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.25);
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+    box-shadow: 0 6px 16px rgba(37,99,235,0.35);
 }
 
 .btn-primary:active {
@@ -236,19 +251,23 @@ body {
     font-weight: 600 !important;
 }
 
-/* ============ KEYBOARD SHORTCUT HINT ============ */
+/* ============ KEYBOARD SHORTCUT HINT (TECLAS 3D) ============ */
 .shortcut-hint {
     font-size: 0.72rem;
     color: var(--text-muted);
 }
 
 kbd {
-    background-color: #e2e8f0;
-    border-radius: 4px;
-    padding: 2px 5px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-bottom: 2px solid #94a3b8;
+    border-radius: 5px;
+    padding: 2px 6px;
     font-size: 0.7rem;
     font-family: inherit;
-    color: var(--text-main);
+    font-weight: 600;
+    color: #475569;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 /* ==========================================
@@ -257,12 +276,10 @@ kbd {
 [data-bs-theme="dark"] {
     --bs-body-bg: #121214;
     --bs-body-color: #e1e1e6;
-    background-color: #121214 !important;
-    color: #e1e1e6 !important;
 }
 
 [data-bs-theme="dark"] body {
-    background-color: #121214 !important;
+    background: radial-gradient(circle at 50% -10%, rgba(37, 99, 235, 0.15) 0%, transparent 50%), #121214 !important;
     color: #e1e1e6 !important;
 }
 
@@ -276,12 +293,19 @@ kbd {
     background-color: #1a1a1e !important;
     color: #e1e1e6 !important;
     border-color: #29292e !important;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5) !important;
+    box-shadow: 0 10px 20px -3px rgba(0,0,0,0.6) !important;
 }
 
-[data-bs-theme="dark"] .topLinks {
-    background-color: #202024 !important;
-    border-color: #29292e !important;
+[data-bs-theme="dark"] .topLinks a {
+    background: #202024;
+    border-color: #2e2e34;
+    color: #a1a1aa;
+}
+
+[data-bs-theme="dark"] .topLinks a:hover {
+    color: #ffffff;
+    background: #282830;
+    border-color: #3b82f6;
 }
 
 [data-bs-theme="dark"] .form-control,
@@ -299,10 +323,15 @@ kbd {
     box-shadow: 0 0 0 4px rgba(37,99,235,0.2);
 }
 
+[data-bs-theme="dark"] .textarea::-webkit-scrollbar-thumb {
+    background-color: #3f3f46;
+}
+
 [data-bs-theme="dark"] kbd {
-    background-color: #27272a;
-    color: #f4f4f5;
+    background: #27272a;
     border: 1px solid #3f3f46;
+    border-bottom: 2px solid #18181b;
+    color: #e4e4e7;
 }
 
 [data-bs-theme="dark"] .text-muted,
@@ -361,15 +390,4 @@ kbd {
 #customConfirmModal .modal-content {
     border: 2px solid #0d6efd !important;
     box-shadow: 0 0 20px rgba(13, 110, 253, 0.25) !important;
-}
-
-body {
-    /* Efeito de luz difusa suave no fundo */
-    background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
-                var(--bg-body);
-}
-
-[data-bs-theme="dark"] body {
-    background: radial-gradient(circle at 50% -10%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
-                #0f0f11 !important;
 }
